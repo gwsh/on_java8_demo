@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class Range {
 
-    private static Random random = null;
+    private static Random random;
     private final static int INT_M = Integer.MAX_VALUE;
 
     static {
@@ -23,7 +23,7 @@ public class Range {
      * @param length
      * @return
      */
-    public static int[] range(int length) {
+    public static int[] range(int length) throws Exception {
         checkLength(length);
         int[] ints = new int[length];
         for (int i = 0; i < length; i++) {
@@ -37,7 +37,7 @@ public class Range {
      * @param end    数组内部数据的返回 默认是0开始到end
      * @return 返回一个int类型的对象 长度为length 每一个元素的范围是 0-end的整数
      */
-    public static int[] range(int length, int end) {
+    public static int[] range(int length, int end) throws Exception {
         checkLength(length);
         if (end == 0) {
             new Exception("end cannot be zero");
@@ -60,7 +60,7 @@ public class Range {
      * @param equal
      * @return
      */
-    public static int[] range(int length, int start, int end, int equal) {
+    public static int[] range(int length, int start, int end, int equal) throws Exception {
         checkNegativeNumber(start);
         checkLength(length);
         int[] ints = new int[length];
@@ -84,9 +84,9 @@ public class Range {
      * @param end
      * @return
      */
-    public static int[] range(int length, int start, int end) {
-        checkNegativeNumber(start);
+    public static int[] range(int length, int start, int end) throws Exception {
         checkLength(length);
+        checkNegativeNumber(start);
         int[] ints = new int[length];
         for (int i = 0; i < length; i++) {
             ints[i] = intBuilder(start, end);
@@ -101,7 +101,7 @@ public class Range {
      * @param end
      * @return
      */
-    public static int intBuilder(int start, int end) {
+    public static int intBuilder(int start, int end) throws Exception {
         checkNegativeNumber(start);
         int result = random.nextInt(end);
         while (result < start) {
@@ -116,10 +116,9 @@ public class Range {
      * @param length
      * @return
      */
-    private static boolean checkLength(int length) {
+    private static boolean checkLength(int length) throws Exception {
         if (length < 2) {
-            new Exception("length is not or length < 2");
-            return false;
+            throw new Exception("length is not or length < 2");
         } else {
             return true;
         }
@@ -131,10 +130,9 @@ public class Range {
      * @param i
      * @return
      */
-    public static boolean checkNegativeNumber(int i) {
+    public static boolean checkNegativeNumber(int i) throws Exception {
         if (i < 0) {
-            new Exception("length is not or length < 2");
-            return false;
+            throw new Exception("Array starting random number cannot be negative.");
         } else {
             return true;
         }
