@@ -100,7 +100,7 @@ public class Range {
      * @return
      */
     public static int intBuilder(int start, int end) {
-        int result = 0;
+        int result = random.nextInt(end);
         while (result < start) {
             result = random.nextInt(end);
         }
