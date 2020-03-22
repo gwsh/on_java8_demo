@@ -61,6 +61,7 @@ public class Range {
      * @return
      */
     public static int[] range(int length, int start, int end, int equal) {
+        checkNegativeNumber(start);
         checkLength(length);
         int[] ints = new int[length];
         int _int = start;
@@ -84,6 +85,7 @@ public class Range {
      * @return
      */
     public static int[] range(int length, int start, int end) {
+        checkNegativeNumber(start);
         checkLength(length);
         int[] ints = new int[length];
         for (int i = 0; i < length; i++) {
@@ -100,6 +102,7 @@ public class Range {
      * @return
      */
     public static int intBuilder(int start, int end) {
+        checkNegativeNumber(start);
         int result = random.nextInt(end);
         while (result < start) {
             result = random.nextInt(end);
@@ -115,6 +118,21 @@ public class Range {
      */
     private static boolean checkLength(int length) {
         if (length < 2) {
+            new Exception("length is not or length < 2");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 判断是否为负数
+     *
+     * @param i
+     * @return
+     */
+    public static boolean checkNegativeNumber(int i) {
+        if (i < 0) {
             new Exception("length is not or length < 2");
             return false;
         } else {
